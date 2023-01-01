@@ -150,4 +150,70 @@ def get_only_evens(nums):
     return lst
 def get_only_evens(nums):
 	return [i for i in nums[::2] if i%2==0]
+==========================
+Create a function that takes in a current mood and return a sentence in the following format: "Today, I am feeling {mood}". However, if no argument is passed, return "Today, I am feeling neutral".
+Examples
+mood_today("happy") ➞ "Today, I am feeling happy"
+mood_today("sad") ➞ "Today, I am feeling sad"
+mood_today() ➞ "Today, I am feeling neutral"
 
+def mood_today(mood='neutral'):
+    if not mood:
+        return 'Today, I am feeling mood'
+    else:
+        return 'Today, I am feeling {}'.format(mood)
+==========================
+Given an unsorted list, create a function that returns the nth smallest integer (the smallest integer is the first smallest, the second smallest integer is the second smallest, etc).
+Examples
+nth_smallest([1, 3, 5, 7], 1) ➞ 1
+nth_smallest([1, 3, 5, 7], 3) ➞ 5
+nth_smallest([1, 3, 5, 7], 5) ➞ None
+nth_smallest([7, 3, 5, 1], 2) ➞ 3
+
+def nth_smallest(lst, n):
+    sorted_list = sorted(lst)
+    if len(lst) >= n:
+        return sorted_list[n-1]
+    else:
+        return None
+==========================
+Create a function that returns the frequency distribution of a list. This function should return an object, where the keys are the unique elements and the values are the frequency in which those elements occur.
+Examples
+get_frequencies(["A", "B", "A", "A", "A"]) ➞ { "A" : 4, "B" : 1 }
+get_frequencies([1, 2, 3, 3, 2]) ➞ { 1: 1, 2: 2, 3: 2 }
+get_frequencies([True, False, True, False, False]) ➞ { True: 2, False: 3 }
+get_frequencies([]) ➞ {}
+
+def get_frequencies(lst):
+        d = {}
+        for i in lst:
+            d[i] = lst.count(i)
+        return d
+=============================
+Create a function that returns a list of strings sorted by length in ascending order.
+Examples
+sort_by_length(["a", "ccc", "dddd", "bb"]) ➞ ["a", "bb", "ccc", "dddd"]
+sort_by_length(["apple", "pie", "shortcake"]) ➞ ["pie", "apple", "shortcake"]
+sort_by_length(["may", "april", "september", "august"]) ➞ ["may", "april", "august", "september"]
+sort_by_length([]) ➞ []
+
+def sort_by_length(lst):
+	return sorted(lst, key=len)
+===================
+Remove enemies from the list of people, even if the enemy shows up twice.
+Examples
+remove_enemies(["Fred"], []) ➞ ["Fred"]
+remove_enemies(["Adam", "Emmy", "Tanya", "Emmy"], ["Emmy"]) ➞ ["Adam", "Tanya"]
+
+def remove_enemies(names, enemies):
+	#return [i for i in names if i not in enemies]
+	return filter(lambda i:i not in enemies,names)
+============================
+Write a function that creates a dictionary with each (key, value) pair being the (lower case, upper case) versions of a letter, respectively.
+Examples
+mapping(["p", "s"]) ➞ { "p": "P", "s": "S" }
+mapping(["a", "b", "c"]) ➞ { "a": "A", "b": "B", "c": "C" }
+mapping(["a", "v", "y", "z"]) ➞ { "a": "A", "v": "V", "y": "Y", "z": "Z" }
+
+def mapping(letters):
+    return {i:i.upper() for i in letters}
