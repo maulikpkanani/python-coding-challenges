@@ -1,4 +1,5 @@
 https://edabit.com/challenges/python3
+Easy-->Language fundamentals
 
 Flip the Boolean
 Create a function that reverses a boolean value and returns the string "boolean expected" if another variable type is given.
@@ -217,3 +218,20 @@ mapping(["a", "v", "y", "z"]) ➞ { "a": "A", "v": "V", "y": "Y", "z": "Z" }
 
 def mapping(letters):
     return {i:i.upper() for i in letters}
+===========================
+Create a function which validates whether a 3 character string is a vowel sandwich. In order to have a valid sandwich, the string must satisfy the following rules:
+The first and last characters must be a consonant.
+The character in the middle must be a vowel.
+Examples
+is_vowel_sandwich("cat") ➞ True
+is_vowel_sandwich("ear") ➞ False
+is_vowel_sandwich("bake") ➞ False
+is_vowel_sandwich("try") ➞ False
+
+def is_vowel_sandwich(s):
+    v = 'aeiou'
+    return len(s) == 3 and s[1] in v and s[0] not in v and s[-1] not in v
+import re
+def is_vowel_sandwich(s):
+	return bool(re.match(r'[^aeiou][aeiou][^aeiou]\Z', s))
+=============================
