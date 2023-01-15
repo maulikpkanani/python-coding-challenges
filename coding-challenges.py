@@ -235,3 +235,161 @@ import re
 def is_vowel_sandwich(s):
 	return bool(re.match(r'[^aeiou][aeiou][^aeiou]\Z', s))
 =============================
+Create a function that returns the number of arguments it was called with.
+Examples
+num_args() ➞ 0
+num_args("foo") ➞ 1
+num_args("foo", "bar") ➞ 2
+num_args(True, False) ➞ 2
+num_args({}) ➞ 1
+
+def num_args(*args):
+    return len(args)
+=========================
+Write a function that searches a list of names (unsorted) for the name "Bob" and returns the location in the list. If Bob is not in the list, return -1.
+Examples
+find_bob(["Jimmy", "Layla", "Bob"]) ➞ 2
+find_bob(["Bob", "Layla", "Kaitlyn", "Patricia"]) ➞ 0
+find_bob(["Jimmy", "Layla", "James"]) ➞ -1
+
+def find_bob(names):
+    try:
+        return names.index("Bob")
+    except:
+        return -1
+=======================
+Create a function that returns True if the given string has any of the following:
+Only letters and no numbers.
+Only numbers and no letters.
+If a string has both numbers and letters, or contains characters which don't fit into any category, return False
+Examples
+alphanumeric_restriction("Bold") ➞ True
+alphanumeric_restriction("123454321") ➞ True
+alphanumeric_restriction("H3LL0") ➞ False
+alphanumeric_restriction("ed@bit") ➞ False
+
+def alphanumeric_restriction(s): 
+    return s.isalpha() or s.isnumeric()
+=======================
+Create a function that squares every digit of a number.
+Examplessquare_digits(9119) ➞ 811181
+square_digits(2483) ➞ 416649
+square_digits(3212) ➞ 9414
+
+def square_digits(n):
+    strn = str(n)
+    strs = ''
+    for i in strn:
+        strs += str((int(i)**2))
+    return int(strs)
+======================
+Write a function that finds the sum of the first n natural numbers. Make your function recursive.
+Examples
+sum_numbers(5) ➞ 15
+# 1 + 2 + 3 + 4 + 5 = 15
+sum_numbers(1) ➞ 1
+sum_numbers(12) ➞ 78
+
+def sum_numbers(n):
+    if n == 1:
+        return n
+    else:
+        return (n + sum_numbers(n-1))
+==========================
+Create a function to calculate how many characters in total are needed to make up the shape. You will be given a list of strings which make up a shape in the compiler (i.e. a square, a rectangle or a line).
+Examples
+count_characters([
+  "###",
+  "###",
+  "###"
+]) ➞ 9
+count_characters([
+  "22222222",
+  "22222222",
+]) ➞ 16
+count_characters([
+  "------------------"
+]) ➞ 18
+count_characters([]) ➞ 0
+count_characters(["", ""]) ➞ 0
+
+def count_characters(lst):
+    return len(''.join(lst))
+==============================
+Given a string of numbers separated by a comma and space, return the product of the numbers.
+Examples
+multiply_nums("2, 3") ➞ 6
+multiply_nums("1, 2, 3, 4") ➞ 24
+multiply_nums("54, 75, 453, 0") ➞ 0
+multiply_nums("10, -2") ➞ -20
+
+def multiply_nums(nums):
+    return eval(nums.replace(',', '*'))
+================================
+Given an unsorted list, create a function that returns the nth smallest integer (the smallest integer is the first smallest, the second smallest integer is the second smallest, etc).
+Examples
+nth_smallest([1, 3, 5, 7], 1) ➞ 1
+nth_smallest([1, 3, 5, 7], 3) ➞ 5
+nth_smallest([1, 3, 5, 7], 5) ➞ None
+nth_smallest([7, 3, 5, 1], 2) ➞ 3
+
+def nth_smallest(lst, n):
+    if n > len(lst):
+        return None
+    else:
+        lst.sort()
+        return lst[n-1]
+================================
+Imagine a school that kids attend for 6 years. In each year, there are five groups started, marked with the letters a, b, c, d, e. For the first year, the groups are 1a, 1b, 1c, 1d, 1e and for the last year, the groups are 6a, 6b, 6c, 6d, 6e.
+Write a function that returns the groups in the school by year (as a string), separated with a comma and a space in the form of "1a, 1b, 1c, 1d, 1e, 2a, 2b (....) 5d, 5e, 6a, 6b, 6c, 6d, 6e".
+Examples
+print_all_groups() ➞ "1a, 1b, 1c, 1d, 1e, 2a, 2b, 2c, 2d, 2e, 3a, 3b, 3c, 3d, 3e, 4a, 4b, 4c, 4d, 4e, 5a, 5b, 5c, 5d, 5e, 6a, 6b, 6c, 6d, 6e "
+Notes:Use nested "for" loops to achieve this, as well as the array of ["a", "b", "c", "d", "e"] groups
+
+def print_all_groups():
+    resultstr = ""
+    groups = ["a", "b", "c", "d", "e"]
+    for i in range(1,7):
+        for j in groups:
+            resultstr += "{}{}, ".format(i,j)
+    return resultstr[:-2]
+==================================
+Given a list of directions to spin, "left" or "right", return an integer of how many full 360° rotations were made. Note that each word in the list counts as a 90° rotation in that direction.
+Worked Example
+spin_around(["right", "right", "right", "right", "left", "right"]) ➞ 1
+# You spun right 4 times (90 * 4 = 360)
+# You spun left once (360 - 90 = 270)
+# But you spun right once more to make a full rotation (270 + 90 = 360)
+Examples
+spin_around(["left", "right", "left", "right"]) ➞ 0
+spin_around(["right", "right", "right", "right", "right", "right", "right", "right"]) ➞ 2
+spin_around(["left", "left", "left", "left"]) ➞ 1
+
+def spin_around(lst):
+    return abs(lst.count('right')-lst.count('left'))//4
+==================================
+Write a function that searches a list of names (unsorted) for the name "Bob" and returns the location in the list. If Bob is not in the list, return -1.
+Examples
+find_bob(["Jimmy", "Layla", "Bob"]) ➞ 2
+find_bob(["Bob", "Layla", "Kaitlyn", "Patricia"]) ➞ 0
+find_bob(["Jimmy", "Layla", "James"]) ➞ -1
+
+def find_bob(names):
+    return names.index('Bob') if 'Bob' in names else -1
+===================================
+Write a function that returns the boolean True if the given two lists do not share any numbers, and False otherwise.
+
+def not_share(lst1, lst2):
+    return not  set(lst1) & set(lst2)
+==================================
+Write a function that takes a string, breaks it up and returns it with vowels first, consonants second. For any character that's not a vowel (like special characters or spaces), treat them like consonants.
+Examples
+split("abcde") ➞ "aebcd"
+split("Hello!") ➞ "eoHll!"
+split("What's the time?") ➞ "aeieWht's th tm?"
+Notes
+Vowels are a, e, i, o, u.
+Define a separate is_vowel() function for easier to read code (recommendation).
+
+def split(txt):
+	return ''.join(sorted(txt, key=lambda x: x.lower() not in 'aeiou'))
