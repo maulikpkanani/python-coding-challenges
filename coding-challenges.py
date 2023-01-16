@@ -393,3 +393,97 @@ Define a separate is_vowel() function for easier to read code (recommendation).
 
 def split(txt):
 	return ''.join(sorted(txt, key=lambda x: x.lower() not in 'aeiou'))
+================================
+Create a function that returns the frequency distribution of a list. This function should return an object, where the keys are the unique elements and the values are the frequency in which those elements occur.
+Examples
+get_frequencies(["A", "B", "A", "A", "A"]) ➞ { "A" : 4, "B" : 1 }
+get_frequencies([1, 2, 3, 3, 2]) ➞ { 1: 1, 2: 2, 3: 2 }
+get_frequencies([True, False, True, False, False]) ➞ { True: 2, False: 3 }
+get_frequencies([]) ➞ {}
+
+def get_frequencies(lst):
+    counter = {}
+    for i in lst:
+        if i not in counter:
+            counter[i] = 1
+        else:
+            counter [i] += 1
+    return counter
+================================
+Create a function that changes specific words into emoticons. Given a sentence as a string, replace the words smile, grin, sad and mad with their corresponding emoticons.
+word	emoticon
+smile	:D
+grin	:)
+sad	:(
+mad	:P
+Examples
+emotify("Make me smile") ➞ "Make me :D"
+emotify("Make me grin") ➞ "Make me :)"
+emotify("Make me sad") ➞ "Make me :("
+
+def emotify(txt):
+    d = {
+        'smile': ':D',
+        'grin':':)',
+        'sad':':(',
+        'mad':':P'
+    }
+    for k, v in d.items():
+        txt = txt.replace(k,v)
+    return txt
+================================
+Create a function that takes a string as the first argument, and a (string) specification as a second argument. If the specification is "word", return a string with each word reversed while maintaining their original order. If the specification is "sentence", reverse the order of the words in the string, while keeping the words intact.
+Examples
+txt = "There's never enough time to do all the nothing you want"
+flip("Hello", "word") ➞ "olleH"
+flip("Hello", "sentence") ➞ "Hello"
+flip(txt, "word") ➞ "s'erehT reven hguone emit ot od lla eht gnihton uoy tnaw"
+flip(txt, "sentence") ➞ "want you nothing the all do to time enough never There's"
+
+def flip(txt, spec):
+    if spec == 'sentence':
+        finaltxt = ' '.join(txt.split()[::-1])
+    else:
+        finaltxt = ' '.join([i[::-1] for i in txt.split()])
+    return finaltxt
+===================================
+Given a square matrix (i.e. same number of rows as columns), its trace is the sum of the entries in the main diagonal (i.e. the diagonal line from the top left to the bottom right).
+As an example, for:
+[
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9]
+]
+... the trace is 1 + 5 + 9 = 15.
+Write a function that takes a square matrix and computes its trace.
+
+def trace(lst):
+    trace = 0
+    for i in range(len(lst)):
+        trace += (lst[i][i])
+    return trace
+
+def trace(lst):
+    return sum(lst[i][i] for i in range(len(lst)))
+================================
+Given a string indicating a range of letters, return a string which includes all the letters in that range, including the last letter. Note that if the range is given in capital letters, return the string in capitals also!
+Examples
+gimme_the_letters("a-z") ➞ "abcdefghijklmnopqrstuvwxyz"
+gimme_the_letters("h-o") ➞ "hijklmno"
+gimme_the_letters("Q-Z") ➞ "QRSTUVWXYZ"
+gimme_the_letters("J-J") ➞ J"
+
+def gimme_the_letters(spectrum):
+    lowerstr = 'abcdefghijklmnopqrstuvwxyz'
+    capstr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    speclst = spectrum.split('-')
+    if speclst[0] in capstr:
+        index1 = capstr.index(speclst[0])
+        index2 = capstr.index(speclst[1]) + 1
+        return (capstr[index1:index2])
+    else:
+        index1 = lowerstr.index(speclst[0])
+        index2 = lowerstr.index(speclst[1]) + 1
+        return (lowerstr[index1:index2])
+=================================
+
