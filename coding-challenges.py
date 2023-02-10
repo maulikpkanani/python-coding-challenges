@@ -486,4 +486,71 @@ def gimme_the_letters(spectrum):
         index2 = lowerstr.index(speclst[1]) + 1
         return (lowerstr[index1:index2])
 =================================
+Given a number between 1-26, return what letter is at that position in the alphabet. Return "invalid" if the number given is not within that range, or isn't an integer.
+Examples
+letter_at_position(1) ➞ "a"
+letter_at_position(26.0) ➞ "z"
+letter_at_position(0) ➞ "invalid"
+letter_at_position(4.5) ➞ "invalid"
 
+def letter_at_position(n):
+    chars = 'abcdefghijklmnopqrstuvwxyz'
+    if n not in range(1, len(chars)+1):
+        return 'invalid'  
+    else:
+        return (chars[int(n)-1])
+==================================
+Create two functions: a left-shift function and a right-shift function. Each function will take in a list and a single parameter: the number of shifts.
+[1, 2, 3, 4, 5]
+[2, 3, 4, 5, 1]  # left shift of 1
+[5, 1, 2, 3, 4]  # left shift of 4
+[5, 1, 2, 3, 4]  # right shift of 1
+[3, 4, 5, 1, 2]  # right shift of 3
+Examples
+left_shift([1, 2, 3, 4], 1) ➞ [2, 3, 4, 1]
+right_shift([1, 2, 3, 4], 1) ➞ [4, 1, 2, 3]
+left_shift([1, 2, 3, 4, 5], 3) ➞ [4, 5, 1, 2, 3]
+left_shift([1, 2, 3, 4, 5], 5) ➞ [1, 2, 3, 4, 5]
+# You have fully shifted the list, you end up back where you began.
+left_shift([1, 2, 3, 4, 5], 6) ➞ [2, 3, 4, 5, 1]
+# You should be able to take in numbers greater than the length.
+# Think of the length of the list as a modulo.
+
+def left_shift(lst, n):
+	n = n % len(lst) 
+	return lst[n:] + lst[:n]
+
+def right_shift(lst, n):
+	n = n % len(lst) 
+	return lst[-n:] + lst[:-n]
+=======================================
+Is Prime 
+def is_prime(n):
+    if n < 2:
+        return False:
+    for i in range(2, n):
+        if n%i == 0:
+            return False
+        return True
+========================================
+Create a function that finds the highest integer in the list using recursion.
+Examples
+find_highest([-1, 3, 5, 6, 99, 12, 2]) ➞ 99
+find_highest([0, 12, 4, 87]) ➞ 87
+def find_highest(lst):
+    if len(lst) == 1:
+        return lst[0]
+    else:
+        r = find_highest(lst[1:])
+        if r >= lst[0]:
+            return r
+        else lst[0]
+======================================
+Write a function that returns the longest sequence of consecutive zeroes in a binary string.
+Examples
+longest_zero("01100001011000") ➞ "0000"
+longest_zero("100100100") ➞ "00"
+longest_zero("11111") ➞ ""
+def longest_zero(s):
+    return sorted( s.split('1'))[-1] if '0'  in s else ''  
+=====================================
