@@ -554,3 +554,247 @@ longest_zero("11111") ➞ ""
 def longest_zero(s):
     return sorted( s.split('1'))[-1] if '0'  in s else ''  
 =====================================
+A word nest is created by taking a starting word, and generating a new string by placing the word inside itself. This process is then repeated.
+Nesting 3 times with the word "incredible":
+start  = incredible
+first  = incre|incredible|dible
+second = increin|incredible|credibledible
+third  = increinincr|incredible|ediblecredibledible
+The final nest is "increinincrincredibleediblecredibledible" (depth = 3).
+Given a starting word and the final word nest, return the depth of the word nest.
+Examples
+word_nest("floor", "floor") ➞ 0
+word_nest("code", "cocodccococodededeodeede") ➞ 5
+word_nest("incredible", "increinincrincredibleediblecredibledible") ➞ 3
+def word_nest(word, nest):
+    count = 0
+    while len(nest) > len(word):
+        nest = nest.replace(word, '')
+        count += 1
+    return count
+=======================================
+Given a list of integers, replace every number with the mean of all numbers.
+Examples
+flatten_the_curve([1, 2, 3, 4, 5]) ➞ [3, 3, 3, 3, 3]
+flatten_the_curve([0, 0, 0, 2, 7, 3]) ➞ [2, 2, 2, 2, 2, 2]
+flatten_the_curve([4]) ➞ [4]
+flatten_the_curve([]) ➞ []
+def flatten_the_curve(lst): 
+        return [round((sum(lst)/len(lst)),1) for i in lst]
+======================================
+A number n is a Harshad (also called Niven) number if it is divisible by the sum of its digits. For example, 666 is divisible by 6 + 6 + 6, so it is a Harshad number.
+Write a function to determine whether the given number is a Harshad number.
+Examples
+is_harshad(209) ➞ True
+is_harshad(41) ➞ False
+is_harshad(12255) ➞ True
+def is_harshad(num):
+    s = str(num)
+    count = 0
+    for i in s:
+        count += int(i)
+    if num == 0:
+        return False
+    else:
+        return num%count == 0
+======================================
+A tetrahedron is a pyramid with a triangular base and three sides. A tetrahedral number is a number of items within a tetrahedron.
+Create a function that takes an integer n and returns the nth tetrahedral number.
+Alternative Text
+Examples
+tetra(2) ➞ 4
+tetra(5) ➞ 35
+tetra(6) ➞ 56
+def tetra(n):
+	return (n*(n+1)*(n+2))/6
+======================================
+Luke Skywalker has family and friends. Help him remind them who is who. Given a string with a name, return the relation of that person to Luke.
+Person	Relation
+Darth Vader	father
+Leia	sister
+Han	brother in law
+R2D2	droid
+Examples
+relation_to_luke("Darth Vader") ➞ "Luke, I am your father."
+relation_to_luke("Leia") ➞ "Luke, I am your sister."
+relation_to_luke("Han") ➞ "Luke, I am your brother in law."
+def relation_to_luke(name):
+    d = {'Darth Vader':'father','Leia':'sister','Han':'brother in law','R2D2':'droid'}
+    return "Luke, I am your {}.".format(d[name])
+======================================
+Create a function that takes a string and returns the number (count) of vowels contained within it.
+Examples
+count_vowels("Celebration") ➞ 5
+count_vowels("Palm") ➞ 1
+count_vowels("Prediction") ➞ 4
+def count_vowels(txt):
+    vowels = 'aeiou'
+    count = 0
+    for char in txt:
+        if char in vowels:
+            count += 1
+    return count
+=================================
+Create a function that takes a list of numbers between 1 and 10 (excluding one number) and returns the missing number.
+Examples
+missing_num([1, 2, 3, 4, 6, 7, 8, 9, 10]) ➞ 5
+missing_num([7, 2, 3, 6, 5, 9, 1, 4, 8]) ➞ 10
+missing_num([10, 5, 1, 2, 4, 6, 8, 3, 9]) ➞ 7
+def missing_num(lst):
+    for i in range(1,11):
+        if i  not in lst:
+            return i
+================================
+Create a function that takes two strings and returns either True or False depending on whether they're anagrams or not.
+Examples
+is_anagram("cristian", "Cristina") ➞ True
+is_anagram("Dave Barry", "Ray Adverb") ➞ True
+is_anagram("Nope", "Note") ➞ False
+def is_anagram(s1, s2):
+    return sorted(s1.lower()) == sorted(s2.lower())
+def is_anagram(s1, s2):
+    s1 = s1.lower()
+    s2 = s2.lower()
+    char_counts = {}
+    if len(s1) != len(s2):
+        return False
+    for char in s1:
+        if char in char_counts:
+            char_counts[char] += 1
+        else:
+            char_counts[char] = 1
+    for char in s2:
+        if char in char_counts:
+            char_counts[char] -= 1
+        else:
+            return False
+    return all(count == 0 for count in char_counts.values())
+================================
+Create a function that accepts a string as an argument and returns the first non-repeated character.
+Examples
+first_non_repeated_character("g") ➞ "g"
+first_non_repeated_character("it was then the frothy word met the round night") ➞ "a"
+first_non_repeated_character("the quick brown fox jumps then quickly blows air") ➞ "f"
+first_non_repeated_character("hheelloo") ➞ False
+first_non_repeated_character("") ➞ False
+def first_non_repeated_character(txt):
+    d = {}
+    for i in txt:
+        if i in d:
+            d[i] += 1
+        else:
+            d[i] = 1
+    for i in txt:
+        if d[i] == 1:
+            return i
+    return False
+================================
+Create a function that takes a string and returns the number of alphanumeric characters that occur more than once.
+Examples
+duplicate_count("abcde") ➞ 0
+duplicate_count("aabbcde") ➞ 2
+duplicate_count("Indivisibilities") ➞ 2
+duplicate_count("Aa") ➞ 0
+# Case sensitive
+def duplicate_count(txt):
+    d = {}
+    count = 0
+    for i in txt:
+        if i not in d:
+            d[i] = 1
+        else:
+            d[i] += 1
+    for i in d.values():
+        if i > 1:
+            count += 1
+    return count
+    def duplicate_count(txt):
+    count = 0
+    for i in set(txt):
+        if txt.count(i) > 1:
+            count += 1
+    return count
+================================
+Given three lists of integers: lst1, lst2, lst3, return the sum of integers which are common in all three lists.
+Examples
+sum_common([1, 2, 3], [5, 3, 2], [7, 3, 2]) ➞ 5
+// 2 & 3 are common in all 3 lists.
+sum_common([1, 2, 2, 3], [5, 3, 2, 2], [7, 3, 2, 2]) ➞ 7
+// 2, 2 & 3 are common in all 3 lists.
+sum_common([1], [1], [2]) ➞ 0
+def sum_common(lst1, lst2, lst3):
+    slst = lst1 + lst2 + lst3
+    d = {}
+    count  = 0
+    for i in slst:
+        if i not in d:
+            d[i] = 1
+        else:
+            d[i] += 1
+    for key in d:
+        count += int(d[key]/3) * key
+    return count
+def sum_common(lst1, lst2, lst3):
+    set1 = set(lst1)
+    set2 = set(lst2)
+    set3 = set(lst3)
+    common = set1.intersection(set2).intersection(set3)
+    return sum(common)
+================================
+Create a function that takes a number as an argument and returns "Fizz", "Buzz" or "FizzBuzz".
+If the number is a multiple of 3 the output should be "Fizz".
+If the number given is a multiple of 5, the output should be "Buzz".
+If the number given is a multiple of both 3 and 5, the output should be "FizzBuzz".
+If the number is not a multiple of either 3 or 5, the number should be output on its own as shown in the examples below.
+The output should always be a string even if it is not a multiple of 3 or 5.
+Examples
+fizz_buzz(3) ➞ "Fizz"
+fizz_buzz(5) ➞ "Buzz"
+fizz_buzz(15) ➞ "FizzBuzz"
+fizz_buzz(4) ➞ "4"
+def fizz_buzz(num):
+    if num % 3  == 0 and num%5 == 0:
+        return "FizzBuzz"
+    elif num % 3 == 0:
+        return "Fizz"
+    elif num % 5 == 0:
+        return "Buzz"
+    else:
+        return str(num)
+================================
+The Fizz Buzz Test
+Write a program that returns a list of all the numbers from 1 to an integer argument. But for multiples of three use “Fizz” instead of the number and for the multiples of five use “Buzz”. For numbers which are multiples of both three and five use “FizzBuzz”.
+Example
+fizz_buzz(10) ➞ [1, 2, "Fizz", 4, "Buzz", "Fizz", 7, 8, "Fizz", "Buzz"]
+fizz_buzz(15) ➞ [1, 2, "Fizz", 4, "Buzz", "Fizz", 7, 8, "Fizz", "Buzz", 11, "Fizz", 13, 14, "FizzBuzz"]
+def fizz_buzz(num):
+    lst = []
+    for i in range(1, num+1):
+        if i % 3  == 0 and i%5 == 0:
+             lst.append("FizzBuzz")
+        elif i % 3 == 0:
+            lst.append("Fizz")
+        elif i % 5 == 0:
+            lst.append("Buzz")
+        else:
+            lst.append(i)
+    return lst
+================================
+A train has a maximum capacity of n passengers overall, which means each carriage's capacity will share an equal proportion of the maximum capacity.
+Create a function which returns the index of the first carriage which holds 50% or less of its maximum capacity. If no such carriage exists, return -1.
+Worked Example
+find_a_seat(200, [35, 23, 18, 10, 40]) ➞ 2
+# There are 5 carriages which each have a maximum capacity of 40 (200 / 5 = 40).
+# Index 0's carriage is too full (35 is 87.5% of the maximum).
+# Index 1's carriage is too full (23 is 57.5% of the maximum).
+# Index 2's carriage is good enough (18 is 45% of the maximum).
+# Return 2.
+def find_a_seat(n, lst):
+    cap = n/(len(lst))
+    for idx,i in enumerate(lst):
+        if i <= cap/2:
+            return idx
+    return -1
+================================
+
+
