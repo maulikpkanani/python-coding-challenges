@@ -796,5 +796,119 @@ def find_a_seat(n, lst):
             return idx
     return -1
 ================================
+Create a function that takes a list lst of numbers and moves all zeros to the end, preserving the order of the other elements.
+Examples
+move_zeros([1, 0, 1, 2, 0, 1, 3]) ➞ [1, 1, 2, 1, 3, 0, 0]
+move_zeros([0, 1, None, 2, false, 1, 0]) ➞ [1, None, 2, false, 1, 0, 0]
+move_zeros(['a', 0, 0, 'b', 'c', 'd', 0, 1, 0, 1, 0, 3, 0, 1, 9, 0, 0, 0, 0, 9])
+def move_zeros(lst):
+    rlst = []
+    zlst = []
+    for i in lst:
+        if i == 0 and i is not False:
+            zlst.append(i)
+        else:
+            rlst.append(i)
+    return rlst + zlst
+===============================
+Swap Dictionary
+Mubashir is not good in python programming. By mistake, he swapped keys and data values in the dictionary.
+Given a dictionary, return a dictionary with the original values and the list of keys. See below example for a better understanding:
+Given Dictionary
+dict = {
+  "Mubashir": "Name",
+  "31": "Age",
+  "Male": "Sex",
+  "Pilot": "Job",
+  "Matt": "Name",
+  "40": "Age",
+  "Programmer": "Job" }
+Modified Dictionary
+dict = {
+  "Name": ["Mubashir", "Matt"],
+  "Age": ["31", "40"],
+  "Sex": ["Male"],
+  "Job": ["Pilot", "Programmer"]
+}
+def swap_dict(dic):
+	d = {}
+	for key, val in dic.items():
+		d.setdefault(val, []).append(key)
+	return d
+==================================
+TREND:
+Write a function:
+def solution(A,B)
+that,given two non-negative integers A and B,returns the number of bits set to 1 in the binary representation of the number A * B.
+For example,given A=3 and B = 7 the function should return 3,because the binary representation of A * B = 3 * 7 = 21 is 10101 and it contains three bits setto 1.
+Assume that:
+·A and B are integers within the range [0..100,000,000].
+In your solution, focus on correctness. The performance of your solution willnot be the focus of the assessment.
+def solution(A, B):
+    # Compute the product of A and B
+    product = A * B
+    
+    # Convert the product to binary and count the number of 1 bits
+    binary_string = bin(product)[2:]  # Convert to binary string, remove '0b' prefix
+    num_ones = binary_string.count('1')
+    
+    # Return the number of 1 bits
+    return num_ones
+================================
+A non-empty array A consisting of N integers is given.
+You can perform a single swap operation in array A. This operation takes two indices I and J, such that 0 ≤I≤ J<N, and exchanges the values of Alll and A[J].
 
+The goal is to check whether array A can be sorted into non-decreasing order by performing at most one swap operation.
+For example,consider array A such that:
+A[0]=1
+A[1]=5
+A[2]=
+A[3]=3
+A[4]=7
+After exchanging the values A[1] and A[3] we obtain an array [1, 3, 3, 5, 7], which is sorted in non-decreasing order.
+Write a function:
+def solution(A)
+that, given a non-empty array A consisting of N integers, returns True if the array can be sorted into non-decreasing order by performing at most one swap operation or False otherwise.
+For example ,given:
+A[0]=1
+A[1]=5
+A[2]=3
+A[3]=3
+A[4]=7
+the function should return True, as explained above.
+On the other hand, for the following array:
+A[1]=3
+A[2]=5
+A[3]=3
+A[4]=4
+the function should return False, as there is no single swap operation that sorts the array.
+For the following array:
+A[0]=1
+A[1]=3
+A[2]=5
+the function should return True, as the given array is already sorted.
+Assume that:
+N is an integer within the range [1..100];
+each element of array A is an integer within the range [1..1,000,000,000].
+# you can write to stdout for debugging purposes, e.g.
+# print("this is a debug message")
+
+def solution(A):
+    n = len(A)
+    arr = []
+    for i in range(n):
+        arr.append(A[i])
+         
+    arr.sort()
+    count = 0
+    for i in range(n):
+        if A[i] != arr[i]:
+            count += 1
+             
+    if count == 0 or count == 2:
+        return True
+    else:
+        return False
+    pass
+================================
 
